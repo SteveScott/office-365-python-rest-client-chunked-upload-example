@@ -49,12 +49,13 @@ def sharepoint_upload_chunked(blob_path: Path, filename: str, sharepoint_folder:
         size_previous_chunk = 0
         offset = 0
         filesize = os.path.getsize(blob_path)
-        # 31 is just the length of our site's URL
+
 
         URL = https://myorg.sharepoint.com/sites/myapp
         #take url after "sites". You are already logged in to myorg.sharepoint.com via ctx (context)
+        # 29 is just the length of our org's URL. You just need the part after sharepoint.com.
         file_url = URL[29:] + f"/{sharepoint_folder}" + filename
-        sharepoint_folder_long = url[31:] + f"/{sharepoint_folder}"
+        sharepoint_folder_long = url[29:] + f"/{sharepoint_folder}"
         #each upload needs a guid. You will reference this guid as you upload.
         upload_id = uuid.uuid4()
 
