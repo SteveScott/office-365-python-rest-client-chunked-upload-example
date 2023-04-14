@@ -25,9 +25,7 @@ def sharepoint_upload(blob_path: Path, filename: str, sharepoint_folder: str):
         print(f'Copied {blob_path} to {sharepoint_folder} as {filename}.')
     else:
         #uploads a file to sharepoint the conventional way for files less than 262.144 MB
-        ctx = ClientContext(URL).with_credentials(
-            ClientCredential(CLIENT_ID),
-                            CLIENT_SECRET))
+        ctx = ClientContext(URL).with_credentials(ClientCredential(CLIENT_ID, CLIENT_SECRET))
         target_folder = ctx.web.get_folder_by_server_relative_url(sharepoint_folder)
         with open(blob_path, 'rb') as blob:
             target_folder.upload_file(filename, blob)
